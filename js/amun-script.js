@@ -4,7 +4,7 @@
  */
 (function ($, Drupal) {
    'use strict';
-    Drupal.behaviors.customBehavior = {
+    Drupal.behaviors.amunThemeBehavior = {
         attach: function (context, settings) {
             $(context)
                 .find('.close-search')

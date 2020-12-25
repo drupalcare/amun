@@ -6,7 +6,7 @@ description: 'Egyptian Gods - Amun - King of the Gods, God of the Wind. <a targe
 core: '8.x'
 
 libraries:
-  - amun/global-components
+  - amun/amun-theme-global
   - amun/default-color
 
 #Regions

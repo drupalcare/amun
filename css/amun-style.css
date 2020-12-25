@@ -189,7 +189,7 @@ a,
 }
 
 /* Header */
-#block-amun-branding {
+.block-system-branding-block {
   margin: 0 auto;
   float: none;
   text-align: center;
