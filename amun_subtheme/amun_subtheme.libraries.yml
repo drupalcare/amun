@@ -1,0 +1,10 @@
+amun-subtheme-global:
+  version: VERSION
+  css:
+    theme:
+      css/amun-subtheme-style.css: {}
+
+  js:
+    js/amun-subtheme-script.js: {}
+  dependencies:
+  - amun/amun-theme-global
