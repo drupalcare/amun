@@ -1,6 +1,6 @@
 {
   "name": "drupal/amun",
-  "description": "Amun is a Sub-Theme for W3CSS THEME. t is a sub-theme with a sticky main menu, user menu and search icon on the top then the header below it",
+  "description": "Amun is a Sub-Theme for W3CSS THEME. It is a sub-theme with a sticky main menu, user menu and search icon on the top then the header below it",
   "type": "drupal-theme",
   "homepage": "https://drupal.org/project/amun",
   "authors": [
