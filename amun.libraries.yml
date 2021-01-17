@@ -1,8 +1,19 @@
+amun-google-font-external:
+  Version: VERSION
+  css:
+    base:
+      'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
+
+amun-google-font-local:
+  Version: VERSION
+  css:
+    base:
+      css/font/google-font.css: {}
+
 amun-theme-global:
   version: VERSION
   css:
     theme:
-      'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
       css/amun-style.css: {}
   js:
     js/amun-script.js: {}

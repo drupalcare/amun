@@ -13,7 +13,12 @@
 function amun_page_attachments_alter(array &$attachments) {
   // If you enter color theme in theme settings.
   if (theme_get_setting('current_theme') != NULL) {
-    $index = array_search('amun/default-color', $attachments['#attached']['library'], TRUE);
-    unset($attachments['#attached']['library'][$index]);
+    $defaultColr = array_search('amun/default-color', $attachments['#attached']['library'], TRUE);
+    unset($attachments['#attached']['library'][$defaultColr]);
+  }
+  if (theme_get_setting('amun_google_font')) {
+    $external_google_font = array_search('amun/amun-google-font-external', $attachments['#attached']['library'], TRUE);
+    unset($attachments['#attached']['library'][$external_google_font]);
+    $attachments['#attached']['library'][] = 'amun/amun-google-font-local';
   }
 }
