@@ -15,6 +15,12 @@
         "issues": "https://drupal.org/project/issues/amun",
         "source": "https://git.drupalcode.org/project/amun"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    ],
     "require": {
         "drupal/d8w3css": ">=1.17"
     }
