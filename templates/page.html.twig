@@ -224,7 +224,7 @@
     {% if page.footer_first or page.footer_second or page.footer_third %}
       <!-- start: Footer -->
       <div id="footer-container" class="w3-col w3-clear w3-theme-d3 {{ color_footer_container }}">
-        <div id="footer-container-inner" class="w3-row-padding w3-padding-large footer-container-inner ">
+        <div id="footer-container-inner" class="w3-row-padding w3-padding-large footer-container-inner {{ website_width }}">
 
           {% if page.footer_first %}
             <!-- Start: Footer First  -->
@@ -262,7 +262,7 @@
   {% if page.bottom_first or page.bottom_second or page.bottom_third or page.bottom_forth %}
     <!-- Start: Bottom -->
     <div id="bottom-container" class="w3-col w3-clear w3-theme-l2 {{ color_bottom_container }}">
-      <div id="bottom-container-inner" class="w3-row-padding w3-padding-large bottom-container-inner ">
+      <div id="bottom-container-inner" class="w3-row-padding w3-padding-large bottom-container-inner {{ website_width }}">
           {% if page.bottom_first %}
             <!-- Start: Bottom First -->
             <div class="{{ bottom_w3css }} bottom-box {{ bottom_region ? 'bottom-region' }} first-bottom">
