@@ -83,6 +83,7 @@ a,
 #main-navigation-inner-h nav {
   float: left !important;
 }
+
 #main-navigation-inner-h nav:nth-of-type(2),
 #main-navigation-inner-h #block-amun-account-menu {
   float: right !important;
@@ -247,6 +248,19 @@ a,
 
   #main-navigation-inner-h {
     padding-right: 0;
+  }
+
+}
+
+@media screen and (min-width:992px) {
+  li.li-expanded > span,
+  li.li-expanded > a > span {
+    top: 5px;
+  }
+
+  li.li-expanded > span.right-arrow,
+  li.li-expanded > a > span.right-arrow {
+    top: 8px;
   }
 
 }
