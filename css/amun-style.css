@@ -252,15 +252,16 @@ a,
 
 }
 
-@media screen and (min-width:992px) {
-  li.li-expanded > span,
-  li.li-expanded > a > span {
-    top: 5px;
+@media screen and (min-width:993px) {
+  #main-navigation-h .li-0 > span,
+  #main-navigation-h .li-0 > a > span {
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
-
-  li.li-expanded > span.right-arrow,
-  li.li-expanded > a > span.right-arrow {
-    top: 8px;
+  #main-navigation-h .li-1 > span,
+  #main-navigation-h .li-1 > a > span {
+    padding-top: 16px;
+    padding-bottom: 16px;
   }
 
 }
