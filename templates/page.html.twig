@@ -74,7 +74,7 @@
   {% if page.fixed_search_bar %}
   <!-- Start: Fixed Search Bar -->
   <div id="search-slide" class="w3-col w3-clear  w3-theme-l5 search-slide-wrapper" role="search" aria-label="{{ 'Search Bar'|t }}" >
-    <div id="search-slide-inner" class="w3-row search-slide-inner">
+    <div id="search-slide-inner" class="w3-row search-slide-inner {{ website_width }}">
         {{ page.fixed_search_bar }}
         <div class="w3-button close-search">
           <i class="fa fa-close"> </i>
