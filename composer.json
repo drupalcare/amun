@@ -1,5 +1,5 @@
 {
-    "name": "drupal/amun",
+    "name": "drupal/amun-amun",
     "description": "Amun is a Sub-Theme for W3CSS THEME. It is a sub-theme with a sticky main menu, user menu and search icon on the top then the header below it",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
@@ -22,6 +22,6 @@
         }
     ],
     "require": {
-        "drupal/d8w3css": ">=1.17"
+        "drupal/d8w3css": ">=1.22"
     }
 }
