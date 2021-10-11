@@ -98,6 +98,10 @@ a,
   position: relative;
 }
 
+#main-navigation-inner-h li > a {
+  font-weight: 600;
+}
+
 .w3-animate-opacity {
   animation: opac 0.8s;
 }
