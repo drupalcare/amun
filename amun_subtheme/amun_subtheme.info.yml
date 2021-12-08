@@ -1,7 +1,7 @@
 name: Amun Sub-theme
 type: theme
 base theme: amun
-core_version_requirement: ^8 || ^9
+core_version_requirement: ^8 || ^9 || ^10
 description: 'Amun sub-theme is an empty theme for your customization.'
 core: '8.x'
 libraries:
