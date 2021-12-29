@@ -4,21 +4,3 @@
  * @file
  * Remove default color if you apply from theme setting.
  */
-
-/**
- * Implements hook_page_attachments_alter().
- *
- *   Check if current theme has value.
- */
-function amun_page_attachments_alter(array &$attachments) {
-  // If you enter color theme in theme settings.
-  if (theme_get_setting('current_theme') != NULL) {
-    $defaultColr = array_search('amun/default-color', $attachments['#attached']['library'], TRUE);
-    unset($attachments['#attached']['library'][$defaultColr]);
-  }
-  if (theme_get_setting('amun_google_font')) {
-    $external_google_font = array_search('amun/amun-google-font-external', $attachments['#attached']['library'], TRUE);
-    unset($attachments['#attached']['library'][$external_google_font]);
-    $attachments['#attached']['library'][] = 'amun/amun-google-font-local';
-  }
-}

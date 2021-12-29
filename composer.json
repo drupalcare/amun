@@ -22,6 +22,6 @@
         }
     ],
     "require": {
-        "drupal/d8w3css": ">=1.22"
+        "drupal/d8w3css": ">=2.0"
     }
 }

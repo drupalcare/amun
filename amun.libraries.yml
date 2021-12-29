@@ -1,15 +1,3 @@
-amun-google-font-external:
-  Version: VERSION
-  css:
-    base:
-      'https://fonts.googleapis.com/css?family=Source Sans Pro:200,300,400':  { type: external, minified: true }
-
-amun-google-font-local:
-  Version: VERSION
-  css:
-    base:
-      css/font/google-font.css: {}
-
 amun-theme-global:
   version: VERSION
   css:
@@ -18,12 +6,4 @@ amun-theme-global:
   js:
     js/amun-script.js: {}
   dependencies:
-  - drupal8_w3css_theme/global-components
-
-default-color:
-  version: VERSION
-  css:
-    theme:
-      css/color/w3-theme-00017.css: {}
-  dependencies:
-  - drupal8_w3css_theme/global-components
+  - drupal8_w3css_theme/d8w3css-global-styling

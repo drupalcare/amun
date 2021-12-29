@@ -1,4 +1,4 @@
-name: Amun
+name: Amun V2
 type: theme
 base theme: drupal8_w3css_theme
 core_version_requirement: ^8 || ^9 || ^10
@@ -6,9 +6,7 @@ description: 'Egyptian Gods - Amun - King of the Gods, God of the Wind. <a targe
 core: '8.x'
 
 libraries:
-  - amun/amun-google-font-external
   - amun/amun-theme-global
-  - amun/default-color
 
 #Regions
 regions:
