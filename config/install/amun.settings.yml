@@ -7,6 +7,7 @@ features:
   name: true
   node_user_picture: true
   slogan: true
+current_theme: 'w3-theme-00017'
 facebook_url: 'https://www.facebook.com/flashwebcenter'
 twitter_url: 'https://twitter.com/flashwebcenter'
 pinterest_url: 'https://www.pinterest.com/alaahaddad'
