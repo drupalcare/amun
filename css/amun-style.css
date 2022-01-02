@@ -120,6 +120,7 @@
 #search-slide .search-slide-inner {
   position: relative;
   padding: 23px 45px 23px 0;
+  margin: 0 16px!important;
 }
 
 #search-slide form#search-block-form .form-item {
@@ -189,11 +190,6 @@
 
   #search-slide .close-search {
     top: 40px;
-  }
-
-  .w3-search-block-form .form-type-search:before {
-    top: 22px;
-    left: 25px;
   }
 
 }
