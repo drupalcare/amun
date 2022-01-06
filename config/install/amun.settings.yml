@@ -24,3 +24,5 @@ top_region: 1
 main_region: 1
 bottom_region: 1
 footer_region: 1
+full_opacity_onscroll: 1
+border_animation: 1
