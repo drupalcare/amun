@@ -60,7 +60,11 @@
 <div id="main-navigation-v" class="main-navigation-wrapper w3-sidebar w3-bar-block w3-animate-left w3-theme {{ color_primary_menu }}" role="navigation" aria-label="{{ 'Main Navigation'|t }}">
   <div id="main-navigation-inner-v" class="main-navigation-inner-v">
     <div id="close-nav" class="close-nav w3-button w3-bar-block w3-large w3-theme {{ color_primary_menu }}">
-      <i class="fa fa-close"></i>
+      {# <i class="fa fa-close"></i> #}
+      <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
     </div>
     {{ page.primary_menu_vertical }}
   </div>
@@ -77,7 +81,11 @@
     <div id="search-slide-inner" class="w3-row search-slide-inner {{ website_width }}">
       {{ page.fixed_search_bar }}
       <div class="w3-button close-search">
-        <i class="fa fa-close"> </i>
+      {# <i class="fa fa-close"></i> #}
+      <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
       </div>
     </div>
   </div>
@@ -89,17 +97,31 @@
   <div id="main-navigation-h" class="w3-col w3-clear main-navigation-wrapper w3-theme {{ color_primary_menu }}" role="navigation" aria-label="{{ 'Main Navigation'|t }}">
     <div id="main-navigation-inner-h" class="d8-fade w3-row main-navigation-inner-h {{ website_width }}">
       <div class="mobile-nav w3-hide-large w3-button w3-block w3-left-align w3-large {{ color_primary_menu }}">
-        <i class="fa fa-bars"></i>
+        {# <i class="fa fa-bars"></i> #}
+        <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </div>
       {{ page.primary_menu }}
       {% if page.primary_menu_vertical %}
       <div id="open-nav-inner" class="open-nav-inner w3-large {{ color_primary_menu }}">
-        <i class="fa fa-bars"></i>
+        {# <i class="fa fa-bars"></i> #}
+        <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
       </div>
       {% endif %}
       {% if page.fixed_search_bar %}
       <div id="open-search" class="open-search w3-large">
-        <i class="fa fa-search"></i>
+          {# <i class="fa fa-search"></i> #}
+          <svg aria-hidden="true" focusable="false" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
       </div>
       {% endif %}
     </div>
@@ -321,31 +343,31 @@
         <!-- Start: Social Media -->
       <div class="d8-fade w3-center w3-container w3-mobile social-media">
         {% if facebook_url %}
-        <a href="{{ facebook_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="fa fa-facebook"></i></a>
+        <a href="{{ facebook_url }}" title="Facebook" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-facebook"></i></a>
         {% endif %}
         {% if twitter_url %}
-        <a href="{{ twitter_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="fa fa-twitter"></i></a>
+        <a href="{{ twitter_url }}" title="Twitter" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-twitter"></i></a>
         {% endif %}
         {% if pinterest_url %}
-        <a href="{{ pinterest_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa fa-pinterest"></i></a>
+        <a href="{{ pinterest_url }}" title="Pinterest" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-pinterest"></i></a>
         {% endif %}
         {% if google_plus_url %}
-        <a href="{{ google_plus_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="fa fa-google-plus"></i></a>
+        <a href="{{ google_plus_url }}" title="Google" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-google-plus"></i></a>
         {% endif %}
         {% if linkedin_url %}
-        <a href="{{ linkedin_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa fa-linkedin"></i></a>
+        <a href="{{ linkedin_url }}" title="Linkedin" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-linkedin"></i></a>
         {% endif %}
         {% if instagram_url %}
-        <a href="{{ instagram_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa fa-instagram"></i></a>
+        <a href="{{ instagram_url }}" title="Instagram" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-instagram"></i></a>
         {% endif %}
         {% if youtube_url %}
-        <a href="{{ youtube_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="fa fa-youtube"></i></a>
+        <a href="{{ youtube_url }}" title="Youtube" class="w3-opacity w3-hover-opacity-off w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank"><i class="w3-social-icon fa-youtube"></i></a>
         {% endif %}
         {% if drupal_url %}
-        <a href="{{ drupal_url }}" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="fa fa-drupal"></i></a>
+        <a href="{{ drupal_url }}" title="Drupal" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="w3-social-icon fa-drupal"></i></a>
         {% endif %}
         {% if rss_url %}
-        <a href="{{ rss_url }}" class="w3-opacity w3-hover-opacity w3-hover-text-red w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="fa fa-rss"></i></a>
+        <a href="{{ rss_url }}" title="RSS Feed" class="w3-opacity w3-hover-opacity-off w3-hover-text-orange w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="w3-social-icon fa-rss"></i></a>
         {% endif %}
       </div>
       <!-- End: Social Media -->
