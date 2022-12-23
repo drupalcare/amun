@@ -363,6 +363,9 @@
         {% if drupal_url %}
         <a href="{{ drupal_url }}" title="Drupal" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="w3-social-icon fa-drupal"></i></a>
         {% endif %}
+        {% if mastodon_url %}
+          <a href="{{ mastodon_url }}" title="Mastodon" class="w3-opacity w3-hover-opacity-off w3-hover-text-blue w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="w3-social-icon fa-mastodon"></i></a>
+        {% endif %}
         {% if rss_url %}
         <a href="{{ rss_url }}" title="RSS Feed" class="w3-opacity w3-hover-opacity-off w3-hover-text-orange w3-show-inline-block w3-xlarge w3-padding" target="_blank" ><i class="w3-social-icon fa-rss"></i></a>
         {% endif %}
