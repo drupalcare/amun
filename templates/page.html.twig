@@ -391,7 +391,10 @@
     {% if copyright_text %}
       <!-- Start: Copyright -->
       <div class="w3-half w3-container w3-mobile">
-        <p class="w3-section w3-left-align w3-opacity w3-hover-opacity-off">{{copyright_text}}</p>
+        <p class="w3-section w3-left-align w3-opacity w3-hover-opacity-off">
+        {% set currentDate = "now" | date("Y") %}
+        {{ copyright_text|replace({"%year%": currentDate }) }}
+        </p>
       </div>
       <!-- End: Copyright -->
     {% endif %}
