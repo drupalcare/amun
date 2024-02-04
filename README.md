@@ -33,10 +33,10 @@ This theme will use the same configuration from the parent theme.
 --------------------------------------------------------------------------------
 www.drupal.org/project/d8w3css
 www.drupal.org/node/2866181
-www.drupal8-w3css-theme.flashwebcenter.com/w3css-predefined-color-themes
+www.flex6.com/w3css-predefined-color-themes
 www.youtube.com/watch?v=WjUOT8ePWQo&list=PLZVSLeSmRrd1eclpwYXHaPgE4cSzwSSGn
 
-www.drupal8-w3css-theme.flashwebcenter.com/
+www.flex6.com/
 www.amun.flashwebcenter.com/
 www.anhur.flashwebcenter.com/
 www.amunet.flashwebcenter.com/
