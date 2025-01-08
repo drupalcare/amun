@@ -1,5 +1,4 @@
 amun-theme-global:
-  version: VERSION
   css:
     theme:
       css/amun-style.css: {}
