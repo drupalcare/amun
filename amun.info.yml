@@ -1,7 +1,7 @@
 name: Amun V2
 type: theme
 base theme: drupal8_w3css_theme
-core_version_requirement: ^9 || ^10 || ^11
+core_version_requirement: ^9 || ^10 || ^11 || ^12
 description: 'Version 3 <strong><a target=_blank href=https://www.drupal.org/project/solo>"Solo"</strong></a> has been completed with lots of new features that will make it easier and better for you to create a great and successful website or online profile. Should you wish to construct a more intricate website, consider utilizing the <a target=_blank href=https://www.drupal.org/project/paragraphs_bundles>Paragraphs Bundles Module.</strong></a><br/>Egyptian Gods - Amun - King of the Gods, God of the Wind. <a target=_blank href=https://www.drupal.org/project/amun><strong>Amun</strong></a> is sub-theme for <strong><a target=_blank href=https://www.drupal.org/project/d8w3css>W3CSS Theme</a></strong>.<br/><a target=_blank href=https://www.drupal.org/node/2866181>Documentation</a> - <a target=_blank href=http://amun.flashwebcenter.com>Try Out Demonstration</a> - <a target=_blank href=https://www.amun.flashwebcenter.com/w3css-predefined-color-themes>Color Scheme</a> - <a target=_blank href=https://www.drupal.org/project/issues/amun>Create Issue on Drupal</a><br/>Developed & Designed by <strong><a target=_blank href=https://www.alaahaddad.com>Alaa Haddad</a></strong> <a target=_blank href=https://www.flashwebcenter.com>Drupal Development</a> and <a target=_blank href=https://www.drupalcare.com>Drupal Maintenance</a>'
 core: '8.x'
 
