@@ -1,0 +1,22 @@
+# PHPStan configuration for Amun.
+#
+# Added 2026-09-09. Until now this project shipped NO phpstan.neon at all, so
+# the acceptance bar's second measurement was not zero here -- it was NOT TAKEN.
+# A missing config is not a passing one, and the lane's status page said so.
+#
+# Level 6 matches the other analysed projects in this lane. No baseline file is
+# generated: a baseline would record today's findings as acceptable and hide the
+# very count this config exists to produce.
+parameters:
+  level: 6
+  paths:
+    - amun.theme
+  excludePaths:
+    # A contrib project has no vendor/ of its own -- composer installs into the
+    # SITE's vendor dir. PHPStan treats a missing excludePath as a FATAL config
+    # error and analyses nothing, so without the (?) optional marker the job
+    # aborts everywhere the directory is absent, which is everywhere. That is
+    # not hypothetical: selectify carried the unguarded form and had never
+    # analysed a single file.
+    - vendor/ (?)
+    - node_modules/ (?)
