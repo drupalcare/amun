@@ -1,0 +1,31 @@
+# Drupal.org GitLab CI for reference_blocked_users.
+#
+# For details on customizing this file see:
+# https://www.drupal.org/docs/develop/git/using-gitlab-to-contribute-to-drupal/gitlab-ci
+# https://project.pages.drupalcode.org/gitlab_templates/
+include:
+  - project: $_GITLAB_TEMPLATES_REPO
+    ref: $_GITLAB_TEMPLATES_REF
+    file:
+      - '/includes/include.drupalci.main.yml'
+      - '/includes/include.drupalci.variables.yml'
+      - '/includes/include.drupalci.workflows.yml'
+
+variables:
+  # This 2.x branch targets Drupal 11.3+ and 12. Run the jobs against the next
+  # major (Drupal 12) in addition to the current core version so the D12
+  # readiness of this branch is verified on every pipeline.
+  OPT_IN_TEST_NEXT_MAJOR: '1'
+  # THE LINE THAT WAS MISSING, and its absence is why that job had never run.
+  # `OPT_IN_TEST_*` creates the job; `_AUTORUN_*` (default 'none') decides
+  # whether it runs or sits behind a manual prerequisite. With only the opt-in
+  # set, this project's D12 jobs showed as `manual`/`skipped` on every pipeline
+  # while the pipeline itself reported success — measured 2026-09-06 on
+  # pipeline 878576. A green pipeline with no coverage is worse than a missing
+  # job, because it looks fine.
+  _AUTORUN_NEXT_MAJOR: 'all'
+  # `^11.3` is claimed and current core has moved past it, so the floor of the
+  # supported range needs a job too. Drupal 10 is not claimed, so there is
+  # deliberately no previous-major job.
+  OPT_IN_TEST_PREVIOUS_MINOR: '1'
+  _AUTORUN_PREVIOUS_MINOR: 'all'
