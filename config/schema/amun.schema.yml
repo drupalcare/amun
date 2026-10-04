@@ -1,0 +1,6 @@
+# Config schema for the Amun theme settings. The keys are identical to the base
+# theme's (drupal8_w3css_theme), so the type is inherited from it - one source
+# of truth. Only the shipped default values differ per theme.
+amun.settings:
+  type: drupal8_w3css_theme.settings
+  label: 'Amun theme settings'
