@@ -1,6 +1,184 @@
-# Config schema for the Amun theme settings. The keys are identical to the base
-# theme's (drupal8_w3css_theme), so the type is inherited from it - one source
-# of truth. Only the shipped default values differ per theme.
+# Config schema for the Amun theme settings.
+#
+# Self-contained on purpose: it does NOT point at the base theme's
+# drupal8_w3css_theme.settings type. The base theme (d8w3css) ships that type
+# only from the release after 2.0.16, and a site (or CI job) running this
+# sub-theme against an older base would otherwise fail strict schema checking
+# with "No schema for amun.settings". The key list is the same as the base
+# theme's; the base theme's own Kernel test guards that list, and this
+# theme's Kernel test installs its own amun.settings under strict checking.
 amun.settings:
-  type: drupal8_w3css_theme.settings
+  type: theme_settings
   label: 'Amun theme settings'
+  mapping:
+    current_theme:
+      type: string
+      label: 'Predefined colour theme'
+    website_width:
+      type: string
+      label: 'Website width'
+    equal_width:
+      type: integer
+      label: 'Equal width columns'
+    layout_user_login_custom:
+      type: integer
+      label: 'Custom layout for the user login, register and password pages'
+    full_opacity_onscroll:
+      type: integer
+      label: 'Full opacity on scroll'
+    breadcrumb_page_title:
+      type: integer
+      label: 'Hide the page title in the breadcrumb'
+    border_animation:
+      type: integer
+      label: 'Border animation'
+    sitename_animation:
+      type: string
+      label: 'Site name animation'
+    pagetitle_animation:
+      type: string
+      label: 'Page title animation'
+    d8w3css_font_awesome:
+      type: integer
+      label: 'Font Awesome library'
+    d8w3css_google_font_local:
+      type: integer
+      label: 'Load Google fonts locally'
+    d8w3css_site_gf:
+      type: string
+      label: 'Global site font'
+    d8w3css_site_gfh:
+      type: string
+      label: 'Heading font'
+    d8w3css_site_gfs:
+      type: string
+      label: 'Special font'
+    top_region:
+      type: integer
+      label: 'Top region'
+    main_region:
+      type: integer
+      label: 'Main region'
+    bottom_region:
+      type: integer
+      label: 'Bottom region'
+    footer_region:
+      type: integer
+      label: 'Footer region'
+    show_social_icon:
+      type: integer
+      label: 'Show social icons'
+    social_media_size:
+      type: integer
+      label: 'Social media icon size'
+    facebook_url:
+      type: string
+      label: 'Facebook URL'
+    twitter_url:
+      type: string
+      label: 'X (Twitter) URL'
+    pinterest_url:
+      type: string
+      label: 'Pinterest URL'
+    linkedin_url:
+      type: string
+      label: 'LinkedIn URL'
+    instagram_url:
+      type: string
+      label: 'Instagram URL'
+    youtube_url:
+      type: string
+      label: 'YouTube URL'
+    drupal_url:
+      type: string
+      label: 'Drupal.org URL'
+    rss_url:
+      type: string
+      label: 'RSS URL'
+    mastodon_url:
+      type: string
+      label: 'Mastodon URL'
+    copyright_text:
+      type: string
+      label: 'Copyright text'
+    show_credit_link:
+      type: integer
+      label: 'Show credit link'
+    color_page_wrapper:
+      type: string
+      label: 'Page wrapper colour classes'
+    color_header:
+      type: string
+      label: 'Header colour classes'
+    color_primary_menu:
+      type: string
+      label: 'Primary menu colour classes'
+    color_welcome_text:
+      type: string
+      label: 'Welcome text colour classes'
+    color_highlighted:
+      type: string
+      label: 'Highlighted colour classes'
+    color_top_container:
+      type: string
+      label: 'Top container colour classes'
+    color_top_first:
+      type: string
+      label: 'Top first colour classes'
+    color_top_second:
+      type: string
+      label: 'Top second colour classes'
+    color_top_third:
+      type: string
+      label: 'Top third colour classes'
+    color_page_title:
+      type: string
+      label: 'Page title colour classes'
+    color_main:
+      type: string
+      label: 'Main colour classes'
+    color_breadcrumb:
+      type: string
+      label: 'Breadcrumb colour classes'
+    color_sidebar_first:
+      type: string
+      label: 'Left sidebar colour classes'
+    color_content:
+      type: string
+      label: 'Content colour classes'
+    color_sidebar_second:
+      type: string
+      label: 'Right sidebar colour classes'
+    color_bottom_container:
+      type: string
+      label: 'Bottom container colour classes'
+    color_bottom_first:
+      type: string
+      label: 'Bottom first colour classes'
+    color_bottom_second:
+      type: string
+      label: 'Bottom second colour classes'
+    color_bottom_third:
+      type: string
+      label: 'Bottom third colour classes'
+    color_bottom_forth:
+      type: string
+      label: 'Bottom fourth colour classes'
+    color_footer_container:
+      type: string
+      label: 'Footer container colour classes'
+    color_footer_first:
+      type: string
+      label: 'Footer first colour classes'
+    color_footer_second:
+      type: string
+      label: 'Footer second colour classes'
+    color_footer_third:
+      type: string
+      label: 'Footer third colour classes'
+    color_footer_menu:
+      type: string
+      label: 'Footer menu colour classes'
+    color_copyright:
+      type: string
+      label: 'Copyright colour classes'
