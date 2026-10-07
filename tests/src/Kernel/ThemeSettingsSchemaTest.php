@@ -17,6 +17,8 @@ use PHPUnit\Framework\Attributes\RunTestsInSeparateProcesses;
  * the base theme's own schema.
  *
  * @license SPDX-License-Identifier: GPL-2.0-or-later
+ *
+ * @group amun
  */
 #[Group('amun')]
 #[RunTestsInSeparateProcesses]
