@@ -15,7 +15,7 @@ the top of the page, and the site header below it.
 1. Install W3CSS Theme 3.0 (for example `composer require drupal/d8w3css`).
 2. Install Amun into `themes/contrib`, for example
    `composer require drupal/amun`.
-3. Go to Appearance (`/admin/appearance`) and scroll to "Amun V2".
+3. Go to Appearance (`/admin/appearance`) and scroll to "Amun".
 4. Click "Install and set as default".
 
 With Drush: `drush theme:enable drupal8_w3css_theme amun`, then
