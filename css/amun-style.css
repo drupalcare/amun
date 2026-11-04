@@ -1,227 +1,249 @@
-@keyframes opac {
-  from {
-    opacity: 0;
+/*
+ * amun: sticky top navigation, header and colour fixes on top of the D8W3CSS
+ * base theme and its colour scheme (w3-theme-00017 by default).
+ * The theme's own values live in the --amun-* custom properties below.
+ */
+:root {
+  --amun-nav-icon-size: 50px;
+  --amun-sticky-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+}
+
+/* Colour values: made for amun's own scheme, so they apply only while that
+   scheme is active. D8W3CSS names the active scheme in a body class; with any
+   other scheme, that scheme's own colours are left untouched. */
+.w3css-scheme-w3-theme-00017 {
+  --amun-nav-text: #000;
+  --amun-heading-color: #cc4d1b;
+  --amun-footer-text: #d8e8f4;
+  --amun-footer-border: #7a8f9a;
+  --amun-focus-border: #5c8db3;
+
+  /* Scheme variables (w3-theme-00017.css :root) that amun re-points. */
+  --w-h1: var(--amun-heading-color);
+  --w-fm-inner-f-v: 1px solid var(--amun-footer-border);
+}
+
+/* Top navigation: one flex row; the account menu sits at the end. */
+.w3css-main-nav__inner--horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.w3css-main-nav__inner--horizontal::before,
+.w3css-main-nav__inner--horizontal::after {
+  content: none;
+}
+
+.w3css-main-nav__inner--horizontal > :has(.w3css-menu__list):not(:has(.w3css-menu__list--menu-account)) {
+  flex: 1 1 auto;
+}
+
+.w3css-main-nav__inner--horizontal > :has(.w3css-menu__list--menu-account) {
+  margin-inline-start: auto;
+}
+
+/* Wide screens: menu links fill the full bar height. The bar is as tall as its
+   tallest item (the 50px openers), so links that kept their own 48px height
+   left a strip of bar colour under them, visible under the active link. */
+@media screen and (min-width: 993px) {
+  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
+    display: flex;
+    align-items: stretch;
   }
 
-  to {
-    opacity: 1;
+  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 {
+    display: flex;
+    align-items: stretch;
+    margin-block: 0;
   }
 
-}
-
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
+  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li {
+    display: flex;
+    align-items: stretch;
   }
 
-  to {
-    top: 0;
-    opacity: 1;
+  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li > a {
+    display: flex;
+    align-items: center;
   }
-
 }
 
-@keyframes animateleft {
-  from {
-    left: -300px;
-    opacity: 0;
-  }
-
-  to {
-    left: 0;
-    opacity: 1;
-  }
-
-}
-
-@keyframes animateright {
-  from {
-    right: -300px;
-    opacity: 0;
-  }
-
-  to {
-    right: 0;
-    opacity: 1;
-  }
-
-}
-
-/* Top Sticky Menu */
-#main-navigation-inner-h nav {
-  float: left !important;
-}
-
-#main-navigation-inner-h nav:nth-of-type(2),
-#main-navigation-inner-h #block-amun-account-menu {
-  float: right !important;
-}
-
-#main-navigation-inner-h .ul-parent-account li {
-  float: left;
-}
-
-#main-navigation-inner-h {
-  padding-right: 50px;
-  position: relative;
-}
-
-.w3-animate-opacity {
-  animation: opac 0.8s;
-}
-
-.w3-animate-top {
-  position: relative;
-  animation: animatetop 0.6s;
-}
-
-.w3-animate-left {
-  position: relative;
-  animation: animateleft 0.7s;
-}
-
-.w3-animate-right {
-  position: relative;
-  animation: animateright 0.7s;
-}
-
-/*. Search Slide */
-.search-slide-wrapper {
-  width: 100%;
-  z-index: 9999;
-  height: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: hidden;
-  transition: 0.5s;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-}
-
-#header {
-  z-index: 97;
+.w3css-main-nav__inner--horizontal .w3css-main-nav__open,
+.w3css-main-nav__inner--horizontal .open-search {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--amun-nav-icon-size);
+  padding: 0.875rem 0.9375rem;
+  cursor: pointer;
 }
 
 .w3-sticky {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: var(--amun-sticky-shadow);
 }
 
-#search-slide form#search-block-form {
-  width: calc(100% - 16px);
-  max-width: 100% !important;
-  padding: 9px 0 0 0 !important;
-  margin: 0 16px;
+/* search-slide:start
+ * Shared by amun, amunet and anhur; keep the three identical
+ * (planning/scripts/check-search-slide-drift.py in the lane root).
+ * js/amun-script.js sets amun-is-open and inert on the panel.
+ */
+.search-slide-wrapper {
+  --amun-search-z: 9999;
+  --amun-search-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--amun-search-z);
+  box-shadow: var(--amun-search-shadow);
+  opacity: 0;
+  transform: translateY(-100%);
 }
 
-#search-slide .w3-search-block-form .form-type-search:before {
-  top: 31px;
+.search-slide-wrapper.amun-is-open {
+  opacity: 1;
+  transform: none;
 }
 
-#search-slide .search-slide-inner {
-  position: relative;
-  padding: 23px 61px 23px 0;
+@media (prefers-reduced-motion: no-preference) {
+  .search-slide-wrapper {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
 }
 
-#search-slide form#search-block-form .form-item {
-  float: left;
-  width: 90%;
-  margin: 0;
-  padding: 0;
-}
-
-#search-slide form#search-block-form .form-actions {
-  float: right;
-  width: 10%;
-  margin: 0;
-  padding: 0;
-}
-
-.open-nav-inner,
-#search-slide .close-search,
-#search-slide .open-search {
-  cursor: pointer;
-}
-
-#main-navigation-inner-h .open-search {
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  width: 50px;
-  position: absolute;
+.search-slide-wrapper .search-slide-inner {
   display: flex;
-  text-align: center;
-  padding: 14px 15px 15px 15px;
-  justify-content: center;
   align-items: center;
+  gap: 0.5rem;
+  padding-block: 1.5rem;
+  padding-inline: 1rem;
 }
 
-#search-slide .close-search {
-  position: absolute;
-  display: flex;
-  text-align: center;
-  top: 38px;
-  right: 16px;
-  padding: 10px 9px;
-  justify-content: center;
-  justify-items: center;
+.search-slide-wrapper .search-slide-inner > :not(.close-search) {
+  flex: 1 1 auto;
+  min-inline-size: 0;
 }
+
+.search-slide-wrapper .w3-search-block-form {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-slide-wrapper .search-slide-inner::before,
+.search-slide-wrapper .search-slide-inner::after,
+.search-slide-wrapper .w3-search-block-form::before,
+.search-slide-wrapper .w3-search-block-form::after {
+  content: none;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-item,
+.search-slide-wrapper .w3-search-block-form .w3css-form-item {
+  position: relative;
+  flex: 1 1 auto;
+  inline-size: auto;
+  min-inline-size: 0;
+  padding: 0;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-actions {
+  flex: 0 0 auto;
+  inline-size: auto;
+  min-inline-size: 3rem;
+  padding: 0;
+}
+
+.search-slide-wrapper .w3-search-block-form .form-type-search::before {
+  inset-block-start: 50%;
+  inset-inline: 8px auto;
+  transform: translateY(-50%);
+}
+
+.search-slide-wrapper .close-search {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.open-search:focus-visible,
+.search-slide-wrapper .close-search:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+/* search-slide:end */
 
 /* Header */
+#w3css-header {
+  z-index: 97;
+}
+
 .block-system-branding-block {
-  margin: 0 auto;
-  float: none;
   text-align: center;
 }
 
-.site-slogan {
-  padding-left: 0;
-}
-
-@media (max-width:600px) {
-  #search-slide .search-slide-inner {
-    padding-top: 25px;
-    padding-bottom: 25px;
-  }
-
-  #search-slide form#search-block-form .form-actions {
-    min-width: 50px;
-    width: 25%;
-  }
-
-  #search-slide form#search-block-form .form-item {
-    width: 75%;
-  }
-
-  #search-slide .close-search {
-    top: 40px;
-    padding: 8px 9px;
-  }
-
-}
-
-@media screen and (max-width:992px) {
-  .mobile-nav {
-    margin-right: 50px;
-    cursor: pointer;
-    width: auto;
+/* Small screens: the menu toggle shares the first row with the openers; the menus take the next row. */
+@media screen and (max-width: 992px) {
+  .w3css-mobile-nav__toggle {
+    flex: 1 1 0;
+    min-inline-size: 0;
+    inline-size: auto;
     padding: 13px 16px;
+    cursor: pointer;
   }
 
-  #main-navigation-inner-h nav,
-  #main-navigation-inner-h li,
-  #main-navigation-inner-h ul {
-    width: 100%;
+  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
+    order: 1;
+    flex: 0 0 100%;
+    margin-inline-start: 0;
   }
 
-  #main-navigation-inner-h {
-    padding-right: 0;
+  .w3css-main-nav__inner--horizontal .w3css-menu__list,
+  .w3css-main-nav__inner--horizontal .w3css-menu__list li {
+    inline-size: 100%;
   }
+}
 
-  #main-navigation-inner-h .open-search {
-    padding: 15px;
-    align-items: unset;
-    height: auto;
+/* Keyboard focus: the base theme removes every outline; this puts one back. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+.w3-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Colour fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+   scoped to amun's own scheme like the values above. */
+
+/* Nav text: dark on the orange bar (2.97:1 light text became 5.65:1). */
+.w3css-scheme-w3-theme-00017 .w3css-main-nav,
+.w3css-scheme-w3-theme-00017 .w3css-main-nav__close {
+  /* Beats w3-theme-00017.css:53-57, an !important rule of the same specificity. */
+  color: var(--amun-nav-text) !important;
+}
+
+/* Footer menu plain text, was #565e61 on #08131b (2.83:1). */
+.w3css-scheme-w3-theme-00017 .w3css-menu__list--menu-footer {
+  color: var(--amun-footer-text);
+}
+
+/* Input focus border, was #a3c8e5 (1.76:1). */
+.w3css-scheme-w3-theme-00017 input:focus,
+.w3css-scheme-w3-theme-00017 select:focus,
+.w3css-scheme-w3-theme-00017 textarea:focus {
+  border-color: var(--amun-focus-border);
+}
+
+/* Users who ask for less motion get none: the scheme sets a 0.4s transition on every link and button. */
+@media (prefers-reduced-motion: reduce) {
+  a,
+  .w3-button {
+    /* Beats w3-css-theme-shared-custom.css:13, an !important rule of the same specificity. */
+    transition: none !important;
   }
-
 }

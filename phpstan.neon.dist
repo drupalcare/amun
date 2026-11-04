@@ -10,7 +10,7 @@
 parameters:
   level: 6
   paths:
-    - amun.theme
+    - tests
   excludePaths:
     # A contrib project has no vendor/ of its own -- composer installs into the
     # SITE's vendor dir. PHPStan treats a missing excludePath as a FATAL config

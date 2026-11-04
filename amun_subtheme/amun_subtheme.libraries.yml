@@ -5,5 +5,8 @@ amun-subtheme-global:
 
   js:
     js/amun-subtheme-script.js: {}
+
   dependencies:
-  - amun/amun-theme-global
+    - core/drupal
+    - core/once
+    - amun/amun-theme-global

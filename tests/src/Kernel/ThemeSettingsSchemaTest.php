@@ -70,8 +70,8 @@ class ThemeSettingsSchemaTest extends KernelTestBase {
     $this->container->get('theme_installer')->install(['amun']);
     $settings = $this->config('amun.settings');
     $this->assertFalse($settings->isNew());
-    $this->assertSame('w3-theme-00017', $settings->get('current_theme'));
-    $this->assertSame(1, $settings->get('top_region'));
+    $this->assertSame('w3-theme-00017', $settings->get('color_scheme.predefined'));
+    $this->assertTrue($settings->get('region_groups.top.marker_class'));
   }
 
 }
