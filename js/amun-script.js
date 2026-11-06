@@ -12,8 +12,6 @@
  * compares the three copies.
  */
 ((Drupal, once) => {
-  'use strict';
-
   // State class on the panel; the theme's CSS animates it.
   const openClass = 'amun-is-open';
 
@@ -26,7 +24,11 @@
   function closeSideMenu() {
     const sideOpener = document.querySelector('.w3css-main-nav__open');
     const sideCloser = document.querySelector('.w3css-main-nav__close');
-    if (sideOpener && sideCloser && sideOpener.getAttribute('aria-expanded') === 'true') {
+    if (
+      sideOpener &&
+      sideCloser &&
+      sideOpener.getAttribute('aria-expanded') === 'true'
+    ) {
       sideCloser.click();
     }
   }
@@ -41,7 +43,9 @@
    *   The search field, or NULL when the region holds none.
    */
   function findField(panel) {
-    return panel.querySelector('input[type="search"], input:not([type="hidden"]):not([type="submit"])');
+    return panel.querySelector(
+      'input[type="search"], input:not([type="hidden"]):not([type="submit"])',
+    );
   }
 
   /**
@@ -49,8 +53,15 @@
    */
   Drupal.behaviors.amunSearchSlide = {
     attach(context) {
-      once('amun-search-slide', '.open-search[aria-controls]', context).forEach((opener) => {
-        const panel = document.getElementById(opener.getAttribute('aria-controls'));
+      const openers = once(
+        'amun-search-slide',
+        '.open-search[aria-controls]',
+        context,
+      );
+      openers.forEach((opener) => {
+        const panel = document.getElementById(
+          opener.getAttribute('aria-controls'),
+        );
         if (!panel) {
           return;
         }
@@ -67,8 +78,7 @@
             if (field) {
               field.focus({ preventScroll: true });
             }
-          }
-          else if (restoreFocus) {
+          } else if (restoreFocus) {
             opener.focus({ preventScroll: true });
           }
         };
@@ -98,12 +108,15 @@
         // A click anywhere else closes the panel, including the side-menu
         // opener; focus stays where the visitor put it.
         document.addEventListener('click', (event) => {
-          if (isOpen() && !panel.contains(event.target) && !opener.contains(event.target)) {
+          if (
+            isOpen() &&
+            !panel.contains(event.target) &&
+            !opener.contains(event.target)
+          ) {
             setOpen(false, false);
           }
         });
       });
     },
   };
-
 })(Drupal, once);

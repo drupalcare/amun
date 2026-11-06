@@ -1,16 +1,16 @@
 /*
- * amun: sticky top navigation, header and colour fixes on top of the D8W3CSS
- * base theme and its colour scheme (w3-theme-00017 by default).
+ * amun: sticky top navigation, header and color fixes on top of the D8W3CSS
+ * base theme and its color scheme (w3-theme-00017 by default).
  * The theme's own values live in the --amun-* custom properties below.
  */
 :root {
   --amun-nav-icon-size: 50px;
-  --amun-sticky-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  --amun-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
 }
 
-/* Colour values: made for amun's own scheme, so they apply only while that
+/* Color values: made for amun's own scheme, so they apply only while that
    scheme is active. D8W3CSS names the active scheme in a body class; with any
-   other scheme, that scheme's own colours are left untouched. */
+   other scheme, that scheme's own colors are left untouched. */
 .w3css-scheme-w3-theme-00017 {
   --amun-nav-text: #000;
   --amun-heading-color: #cc4d1b;
@@ -45,7 +45,7 @@
 
 /* Wide screens: menu links fill the full bar height. The bar is as tall as its
    tallest item (the 50px openers), so links that kept their own 48px height
-   left a strip of bar colour under them, visible under the active link. */
+   left a strip of bar color under them, visible under the active link. */
 @media screen and (min-width: 993px) {
   .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
     display: flex;
@@ -71,13 +71,13 @@
 
 .w3css-main-nav__inner--horizontal .w3css-main-nav__open,
 .w3css-main-nav__inner--horizontal .open-search {
-  flex: 0 0 auto;
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  min-inline-size: var(--amun-nav-icon-size);
   padding: 0.875rem 0.9375rem;
   cursor: pointer;
+  min-inline-size: var(--amun-nav-icon-size);
 }
 
 .w3-sticky {
@@ -91,24 +91,27 @@
  */
 .search-slide-wrapper {
   --amun-search-z: 9999;
-  --amun-search-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+  --amun-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+
   position: fixed;
+  z-index: var(--amun-search-z);
+  transform: translateY(-100%);
+  opacity: 0;
+  box-shadow: var(--amun-search-shadow);
   inset-block-start: 0;
   inset-inline: 0;
-  z-index: var(--amun-search-z);
-  box-shadow: var(--amun-search-shadow);
-  opacity: 0;
-  transform: translateY(-100%);
 }
 
 .search-slide-wrapper.amun-is-open {
-  opacity: 1;
   transform: none;
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .search-slide-wrapper {
-    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition:
+      transform 0.3s ease-out,
+      opacity 0.3s ease-out;
   }
 }
 
@@ -161,8 +164,8 @@
 }
 
 .search-slide-wrapper .close-search {
-  flex: 0 0 auto;
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
 }
@@ -194,8 +197,8 @@
   }
 
   .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
-    order: 1;
     flex: 0 0 100%;
+    order: 1;
     margin-inline-start: 0;
   }
 
@@ -205,7 +208,8 @@
   }
 }
 
-/* Keyboard focus: the base theme removes every outline; this puts one back. */
+/* Keyboard focus: the same ring as the base theme (base.css), kept here so
+   the sub-theme does not depend on the base theme version. */
 a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
@@ -217,7 +221,7 @@ textarea:focus-visible,
   outline-offset: 2px;
 }
 
-/* Colour fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+/* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
    scoped to amun's own scheme like the values above. */
 
 /* Nav text: dark on the orange bar (2.97:1 light text became 5.65:1). */
