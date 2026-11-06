@@ -3,7 +3,7 @@ package: W3CSS
 type: theme
 base theme: drupal8_w3css_theme
 core_version_requirement: ^11.3 || ^12
-description: 'A W3CSS Theme sub-theme with a sticky navigation bar above the header: the main menu, the account menu and a search button that opens a slide-down search panel. <a href="https://www.amun.flashwebcenter.com" target="_blank" rel="noopener">Demo site</a>'
+description: 'Provides a W3CSS Theme sub-theme with a sticky navigation bar above the header: the main menu, the account menu and a search button that opens a slide-down search panel. <a href="https://www.amun.flashwebcenter.com">Demo site</a>'
 
 libraries:
   - amun/amun-theme-global
