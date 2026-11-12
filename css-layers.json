@@ -1,0 +1,12 @@
+{
+  "_about": "Manifest for scripts/css-layers-check.py (the W3CSS Theme's copy, byte-identical). The layer order is owned by the parent theme (css/base/w3css-layers.css in drupal8_w3css_theme); this sub-theme keeps no copy of it.",
+  "ladder_parent": "drupal8_w3css_theme",
+  "locked_layer": "w3css.locked",
+  "tokens_layer": "w3css.tokens",
+  "element_layers": ["w3css.reset", "w3css.base"],
+  "css_dirs": ["css"],
+  "roots": ["#w3css-", ".w3css-", ".w3-", ".search-slide-", ".open-search", ".block-system-branding-block"],
+  "files": {
+    "css/amun-style.css": ["w3css.tokens", "w3css.base", "w3css.locked", "w3css.subtheme"]
+  }
+}

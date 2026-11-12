@@ -119,4 +119,18 @@
       });
     },
   };
+
+  // Deprecated in 3.0, removed in the next major: the 2.x behavior
+  // name amunThemeBehavior reads and writes
+  // Drupal.behaviors.amunSearchSlide. It is not enumerable, so
+  // Drupal.attachBehaviors() runs the behavior once.
+  if (!Object.hasOwn(Drupal.behaviors, 'amunThemeBehavior')) {
+    Object.defineProperty(Drupal.behaviors, 'amunThemeBehavior', {
+      configurable: true,
+      get: () => Drupal.behaviors.amunSearchSlide,
+      set: (value) => {
+        Drupal.behaviors.amunSearchSlide = value;
+      },
+    });
+  }
 })(Drupal, once);

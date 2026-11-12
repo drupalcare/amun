@@ -88,13 +88,13 @@
   <!-- Start: Main Navigation - Horizontal -->
   <div id="w3css-main-nav-horizontal" class="w3css-main-nav--horizontal w3-col w3-clear w3css-main-nav w3-theme {{ color_primary_menu }}">
     <div id="w3css-main-nav-inner-horizontal" class="w3-row w3css-main-nav__inner--horizontal {{ website_width }}">
-      <div class="w3css-mobile-nav__toggle w3-hide-large w3-button w3-block w3-left-align w3-large w3-theme {{ color_primary_menu }}">
-        <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
+      <button type="button" class="w3css-mobile-nav__toggle w3-hide-large w3-button w3-block w3-left-align w3-large w3-theme {{ color_primary_menu }}" aria-label="{{ 'Toggle menu'|t }}" aria-expanded="false">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="butt" stroke-linejoin="bevel">
           <line x1="3" y1="12" x2="21" y2="12"></line>
           <line x1="3" y1="6" x2="21" y2="6"></line>
           <line x1="3" y1="18" x2="21" y2="18"></line>
         </svg>
-      </div>
+      </button>
       {{ page.primary_menu }}
       {% if page.primary_menu_vertical %}
       <button type="button" id="w3css-main-nav-open" class="w3css-main-nav__open w3-button w3-large {{ color_primary_menu }}" aria-label="{{ 'Open side menu'|t }}" aria-controls="w3css-main-nav-vertical" aria-expanded="false">

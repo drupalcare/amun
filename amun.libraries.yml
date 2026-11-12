@@ -7,4 +7,4 @@ amun-theme-global:
   dependencies:
     - core/drupal
     - core/once
-    - drupal8_w3css_theme/d8w3css-global-styling
+    - drupal8_w3css_theme/base-layers

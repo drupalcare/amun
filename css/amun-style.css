@@ -1,253 +1,478 @@
-/*
- * amun: sticky top navigation, header and color fixes on top of the D8W3CSS
- * base theme and its color scheme (w3-theme-00017 by default).
- * The theme's own values live in the --amun-* custom properties below.
+/**
+ * @file
+ * amun: sticky top navigation, header and color fixes on top of the W3CSS
+ * Theme and its color scheme.
+ *
+ * Layers (order: the W3CSS Theme's w3css-layers.css; check: scripts/css-layers-check.py):
+ *   w3css.tokens    every color value of this file, as --amun-* custom properties
+ *   w3css.base      the keyboard focus ring for links, buttons and fields
+ *   w3css.locked    the !important rules (accessibility, and the color fix that
+ *                   must beat the scheme's own !important rule)
+ *   w3css.subtheme  everything else
  */
-:root {
-  --amun-nav-icon-size: 50px;
-  --amun-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+
+@layer w3css.tokens {
+  :root {
+    --amun-sticky-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+    --amun-search-button-text: #fff;
+  }
+
+  .w3css-scheme-w3-theme-00017 {
+    --amun-nav-text: #000;
+    /* Darkened from #cc4d1b so headings reach 4.5:1 on the #f7f7f7 ground too (WCAG 1.4.3). */
+    --amun-heading-color: #c1491a;
+    --amun-footer-text: #d8e8f4;
+    --amun-footer-border: #7a8f9a;
+    --amun-focus-border: #5c8db3;
+  }
+
+  .search-slide-wrapper {
+    --amun-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
+  }
 }
 
-/* Color values: made for amun's own scheme, so they apply only while that
-   scheme is active. D8W3CSS names the active scheme in a body class; with any
-   other scheme, that scheme's own colors are left untouched. */
-.w3css-scheme-w3-theme-00017 {
-  --amun-nav-text: #000;
-  --amun-heading-color: #cc4d1b;
-  --amun-footer-text: #d8e8f4;
-  --amun-footer-border: #7a8f9a;
-  --amun-focus-border: #5c8db3;
+@layer w3css.subtheme {
+  :root {
 
-  /* Scheme variables (w3-theme-00017.css :root) that amun re-points. */
-  --w-h1: var(--amun-heading-color);
-  --w-fm-inner-f-v: 1px solid var(--amun-footer-border);
+    --amun-nav-icon-size: 50px;
+
+  }
 }
 
-/* Top navigation: one flex row; the account menu sits at the end. */
-.w3css-main-nav__inner--horizontal {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
+@layer w3css.base {
+  /* Keyboard focus: the same ring as the base theme (base.css), kept here so
+     the sub-theme does not depend on the base theme version. */
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible,
+  .w3-button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
 }
 
-.w3css-main-nav__inner--horizontal::before,
-.w3css-main-nav__inner--horizontal::after {
-  content: none;
+@layer w3css.locked {
+  /* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
+     scoped to amun's own scheme like the values above. */
+  /* Nav text: dark on the orange bar (2.97:1 light text became 5.65:1). */
+  .w3css-scheme-w3-theme-00017 .w3css-main-nav,
+  .w3css-scheme-w3-theme-00017 .w3css-main-nav__close {
+    /* Kept !important in w3css.locked so no later or unlayered stylesheet can bring
+       back the light text (contrast fix). The scheme rule it first beat is gone. */
+    color: var(--amun-nav-text) !important;
+  }
+
+  /* Users who ask for less motion get none: the W3CSS Theme sets a short transition on every link and button. */
+  @media (prefers-reduced-motion: reduce) {
+    :where(.w3css-page-wrapper, #w3css-main-nav-vertical, .search-slide-wrapper) a,
+    .w3-button {
+      /* Kept !important in w3css.locked: the visitor's motion setting always wins. */
+      transition: none !important;
+    }
+  }
+
+  /* 62rem to 75rem: tighter main-menu link padding so the links fit one row for
+     longer (75rem and up keep the full padding; below the fit, the menu wraps in
+     w3css.subtheme). Kept !important in w3css.locked: the W3CSS Theme sets the
+     16px padding in an unlayered stylesheet (w3css-host-overrides.css), which a
+     layered rule cannot beat. */
+  @media screen and (min-width: 62rem) and (max-width: 74.99rem) {
+    .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li > a {
+      padding-inline: 0.5rem !important;
+    }
+  }
 }
 
-.w3css-main-nav__inner--horizontal > :has(.w3css-menu__list):not(:has(.w3css-menu__list--menu-account)) {
-  flex: 1 1 auto;
-}
+@layer w3css.subtheme {
+  /* Color values: made for amun's own scheme, so they apply only while that
+     scheme is active. D8W3CSS names the active scheme in a body class; with any
+     other scheme, that scheme's own colors are left untouched. */
+  .w3css-scheme-w3-theme-00017 {
 
-.w3css-main-nav__inner--horizontal > :has(.w3css-menu__list--menu-account) {
-  margin-inline-start: auto;
-}
+    /* Scheme tokens (W3CSS Theme css/predefined/w3css-midnight-ember.css, read by
+       css/predefined/w3css-scheme-custom-paint.css) that amun re-points: headings
+       everywhere, headings inside the content regions, and the footer menu form
+       border. The W3CSS Theme marks the --w3css-custom-* names for a later rename;
+       follow its CHANGELOG name map when it lands. */
+    --w3css-custom-heading-text: var(--amun-heading-color);
+    --w3css-custom-bottom-region-footer-region-and-6-more-text: var(--amun-heading-color);
+    --w3css-custom-footer-menu-form-border: 1px solid var(--amun-footer-border);
+  }
 
-/* Wide screens: menu links fill the full bar height. The bar is as tall as its
-   tallest item (the 50px openers), so links that kept their own 48px height
-   left a strip of bar color under them, visible under the active link. */
-@media screen and (min-width: 993px) {
-  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
+  /* Top navigation: one flex row; the account menu sits at the end. */
+  .w3css-main-nav__inner--horizontal {
     display: flex;
+    flex-wrap: wrap;
     align-items: stretch;
   }
 
-  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 {
-    display: flex;
-    align-items: stretch;
-    margin-block: 0;
+  .w3css-main-nav__inner--horizontal::before,
+  .w3css-main-nav__inner--horizontal::after {
+    content: none;
   }
 
-  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li {
-    display: flex;
-    align-items: stretch;
+  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list):not(:has(.w3css-menu__list--menu-account)) {
+    flex: 1 1 auto;
   }
 
-  .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li > a {
+  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list--menu-account) {
+    margin-inline-start: auto;
+  }
+
+  /* Wide screens: menu links fill the full bar height. The bar is as tall as its
+     tallest item (the 50px openers), so links that kept their own 48px height
+     left a strip of bar color under them, visible under the active link. */
+  @media screen and (min-width: 62rem) {
+    .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 {
+      display: flex;
+      align-items: stretch;
+      margin-block: 0;
+    }
+
+    .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 > li > a {
+      display: flex;
+      align-items: center;
+    }
+
+    /* The menu box may shrink below its links' total width and then wraps onto a
+       second row, so it never runs under the account menu or past the bar. */
+    .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list):not(:has(.w3css-menu__list--menu-account)) {
+      min-inline-size: 0;
+    }
+
+    .w3css-main-nav__inner--horizontal .w3css-menu__list.w3css-list-depth-0 {
+      flex-wrap: wrap;
+    }
+  }
+
+
+  .w3css-main-nav__inner--horizontal .w3css-main-nav__open,
+  .w3css-main-nav__inner--horizontal .open-search {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 0.9375rem;
+    cursor: pointer;
+    min-inline-size: var(--amun-nav-icon-size);
+  }
+
+  .w3-sticky {
+    box-shadow: var(--amun-sticky-shadow);
+  }
+
+  /* search-slide:start
+   * Shared by amun, amunet and anhur; keep the three identical
+   * (planning/scripts/check-search-slide-drift.py in the lane root).
+   * js/amun-script.js sets amun-is-open and inert on the panel.
+   */
+  .search-slide-wrapper {
+    --amun-search-z: 9999;
+
+    position: fixed;
+    z-index: var(--amun-search-z);
+    transform: translateY(-100%);
+    opacity: 0;
+    box-shadow: var(--amun-search-shadow);
+    inset-block-start: 0;
+    inset-inline: 0;
+  }
+
+  .search-slide-wrapper.amun-is-open {
+    transform: none;
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .search-slide-wrapper {
+      transition:
+        transform 0.3s ease-out,
+        opacity 0.3s ease-out;
+    }
+  }
+
+  .search-slide-wrapper .search-slide-inner {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
   }
-}
 
-.w3css-main-nav__inner--horizontal .w3css-main-nav__open,
-.w3css-main-nav__inner--horizontal .open-search {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  padding: 0.875rem 0.9375rem;
-  cursor: pointer;
-  min-inline-size: var(--amun-nav-icon-size);
-}
-
-.w3-sticky {
-  box-shadow: var(--amun-sticky-shadow);
-}
-
-/* search-slide:start
- * Shared by amun, amunet and anhur; keep the three identical
- * (planning/scripts/check-search-slide-drift.py in the lane root).
- * js/amun-script.js sets amun-is-open and inert on the panel.
- */
-.search-slide-wrapper {
-  --amun-search-z: 9999;
-  --amun-search-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.16), 0 2px 10px 0 rgb(0, 0, 0, 0.12);
-
-  position: fixed;
-  z-index: var(--amun-search-z);
-  transform: translateY(-100%);
-  opacity: 0;
-  box-shadow: var(--amun-search-shadow);
-  inset-block-start: 0;
-  inset-inline: 0;
-}
-
-.search-slide-wrapper.amun-is-open {
-  transform: none;
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .search-slide-wrapper {
-    transition:
-      transform 0.3s ease-out,
-      opacity 0.3s ease-out;
-  }
-}
-
-.search-slide-wrapper .search-slide-inner {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding-block: 1.5rem;
-  padding-inline: 1rem;
-}
-
-.search-slide-wrapper .search-slide-inner > :not(.close-search) {
-  flex: 1 1 auto;
-  min-inline-size: 0;
-}
-
-.search-slide-wrapper .w3-search-block-form {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.search-slide-wrapper .search-slide-inner::before,
-.search-slide-wrapper .search-slide-inner::after,
-.search-slide-wrapper .w3-search-block-form::before,
-.search-slide-wrapper .w3-search-block-form::after {
-  content: none;
-}
-
-.search-slide-wrapper .w3-search-block-form .form-item,
-.search-slide-wrapper .w3-search-block-form .w3css-form-item {
-  position: relative;
-  flex: 1 1 auto;
-  inline-size: auto;
-  min-inline-size: 0;
-  padding: 0;
-}
-
-.search-slide-wrapper .w3-search-block-form .form-actions {
-  flex: 0 0 auto;
-  inline-size: auto;
-  min-inline-size: 3rem;
-  padding: 0;
-}
-
-.search-slide-wrapper .w3-search-block-form .form-type-search::before {
-  inset-block-start: 50%;
-  inset-inline: 8px auto;
-  transform: translateY(-50%);
-}
-
-.search-slide-wrapper .close-search {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.open-search:focus-visible,
-.search-slide-wrapper .close-search:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-/* search-slide:end */
-
-/* Header */
-#w3css-header {
-  z-index: 97;
-}
-
-.block-system-branding-block {
-  text-align: center;
-}
-
-/* Small screens: the menu toggle shares the first row with the openers; the menus take the next row. */
-@media screen and (max-width: 992px) {
-  .w3css-mobile-nav__toggle {
-    flex: 1 1 0;
+  .search-slide-wrapper .search-slide-inner > :not(.close-search) {
+    flex: 1 1 auto;
     min-inline-size: 0;
+  }
+
+  .search-slide-wrapper .w3-search-block-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .search-slide-wrapper .search-slide-inner::before,
+  .search-slide-wrapper .search-slide-inner::after,
+  .search-slide-wrapper .w3-search-block-form::before,
+  .search-slide-wrapper .w3-search-block-form::after {
+    content: none;
+  }
+
+  .search-slide-wrapper .w3-search-block-form .form-item,
+  .search-slide-wrapper .w3-search-block-form .w3css-form-item {
+    position: relative;
+    flex: 1 1 auto;
     inline-size: auto;
-    padding: 13px 16px;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .search-slide-wrapper .w3-search-block-form .form-actions {
+    flex: 0 0 auto;
+    inline-size: auto;
+    min-inline-size: 3rem;
+    padding: 0;
+  }
+
+  .search-slide-wrapper .w3-search-block-form .form-type-search::before {
+    inset-block-start: 50%;
+    inset-inline: 8px auto;
+    transform: translateY(-50%);
+  }
+
+  .search-slide-wrapper .close-search {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .open-search:focus-visible,
+  .search-slide-wrapper .close-search:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  /* Polish: the form is one centred row (input, search button, close) no wider
+     than a reading line, a tall input with a visible border, and a filled
+     search button in the panel's own text colour. */
+  .search-slide-wrapper .search-slide-inner {
+    max-inline-size: 64rem;
+    margin: 0 auto;
+  }
+
+  .search-slide-wrapper .w3-search-block-form input[type="search"] {
+    box-sizing: border-box;
+    block-size: 3rem;
+    margin: 0;
+    padding: 0 1rem;
+    border: 1px solid color-mix(in srgb, currentcolor 35%, transparent);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+
+  .search-slide-wrapper .w3-search-block-form .form-actions {
+    border-radius: 0.25rem;
+    background-color: currentcolor;
+  }
+
+  .search-slide-wrapper .w3-search-block-form .form-actions :is(input, button) {
+    box-sizing: border-box;
+    block-size: 3rem;
+    margin: 0;
+    padding: 0 1.25rem;
+    border: 0;
+    border-radius: 0.25rem;
+    color: var(--amun-search-button-text);
+    background-color: transparent;
+    font-weight: 600;
+  }
+
+  .search-slide-wrapper .close-search {
+    inline-size: 3rem;
+    block-size: 3rem;
+    padding: 0;
+  }
+  /* search-slide:end */
+  /* Header */
+  #w3css-header {
+    z-index: 97;
+  }
+
+  .block-system-branding-block {
+    text-align: center;
+  }
+
+  /* Branding lockup: logo and site name sit side by side as one group,
+     centred on one line, the logo sized to the name instead of its
+     300px source width. */
+  #w3css-header .block-system-branding-block {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0 1rem;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+  #w3css-header .block-system-branding-block .site-logo {
+    float: none;
+    flex: 0 0 auto;
+    inline-size: auto;
+    max-inline-size: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #w3css-header .block-system-branding-block .site-logo img {
+    inline-size: auto;
+    max-inline-size: none;
+    block-size: 3.5rem;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-name-slogan {
+    flex: 0 1 auto;
+    min-inline-size: 0;
+    margin: 0;
+    text-align: start;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-name {
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  #w3css-header .block-system-branding-block .w3css-site-slogan {
+    margin: 0.125rem 0 0 0;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 37.49875rem) {
+    #w3css-header .block-system-branding-block .site-logo img {
+      block-size: 2.5rem;
+    }
+  }
+
+  /* Small screens: the menu toggle shares the first row with the openers; the menus take the next row. */
+  @media screen and (max-width: 61.99875rem) {
+    .w3css-mobile-nav__toggle {
+      flex: 1 1 0;
+      min-inline-size: 0;
+      inline-size: auto;
+      padding: 13px 16px;
+      cursor: pointer;
+    }
+
+    .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
+      flex: 0 0 100%;
+      order: 1;
+      margin-inline-start: 0;
+    }
+
+    .w3css-main-nav__inner--horizontal .w3css-menu__list,
+    .w3css-main-nav__inner--horizontal .w3css-menu__list li {
+      inline-size: 100%;
+    }
+  }
+
+  /* Polish: the focus ring of the top bar stays inside the bar. With the default
+     2px outward offset the ring was clipped by the bar's edge on the first and
+     last item and on the 50px openers. */
+  .w3css-main-nav__inner--horizontal :is(a, button, .w3css-main-nav__open, .open-search):focus-visible {
+    outline-offset: -4px;
+  }
+
+  /* Polish: footer menu and copyright are a step smaller than the body text with
+     a tight line height. Hover and focus on the footer links change the text only
+     (never a background); the copyright links get an underline on hover and focus
+     so they are not a color change alone. */
+  #w3css-footer-menu .w3css-menu__link--menu-footer {
+    font-size: 0.875rem;
+    line-height: 1.3;
+  }
+
+  #w3css-copyright-inner p {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  #w3css-copyright-inner a:hover,
+  #w3css-copyright-inner a:focus-visible {
+    text-decoration: underline;
+  }
+
+  #w3css-footer-menu .w3css-menu__link--menu-footer:focus-visible {
+    outline-offset: 2px;
+    background-color: transparent;
+  }
+
+  /* Polish: public forms (contact webform and the user login, password and
+     register forms). One field height, padding and border, one label rhythm and
+     one button size, so a field, a button and the .btn links beside them
+     (12px 20px, 15px/600) line up. Only inside the main region, so the footer sign-in
+     block (tuned in the demo helper) and admin and node forms are not matched. */
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) .form-item > label {
+    display: block;
+    margin: 0 0 0.375rem 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) input.w3-input,
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) textarea.w3-input {
+    box-sizing: border-box;
+    inline-size: 100%;
+    max-inline-size: 100%;
+    padding: 0.625rem 0.875rem;
+    border-width: 1px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) textarea.w3-input {
+    min-block-size: 8rem;
+  }
+
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) .form-actions .form-submit {
+    box-sizing: border-box;
+    padding: 0.75rem 1.25rem;
+    border-width: 2px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
     cursor: pointer;
   }
 
-  .w3css-main-nav__inner--horizontal > :has(.w3css-menu__list) {
-    flex: 0 0 100%;
-    order: 1;
-    margin-inline-start: 0;
+  /* The field focus border is a 1px color change, so the ring (outline) carries
+     the state; keep it a solid 2px, offset 1px outside the border. */
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) input.w3-input:focus-visible,
+  .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) textarea.w3-input:focus-visible {
+    outline-offset: 1px;
   }
 
-  .w3css-main-nav__inner--horizontal .w3css-menu__list,
-  .w3css-main-nav__inner--horizontal .w3css-menu__list li {
-    inline-size: 100%;
+  /* Footer menu plain text, was #565e61 on #08131b (2.83:1). */
+  .w3css-scheme-w3-theme-00017 .w3css-menu__list--menu-footer {
+    color: var(--amun-footer-text);
   }
-}
 
-/* Keyboard focus: the same ring as the base theme (base.css), kept here so
-   the sub-theme does not depend on the base theme version. */
-a:focus-visible,
-button:focus-visible,
-summary:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-.w3-button:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-/* Color fixes (planning/subthemes-a11y-audit.md section 4, owner decisions 2026-11-02),
-   scoped to amun's own scheme like the values above. */
-
-/* Nav text: dark on the orange bar (2.97:1 light text became 5.65:1). */
-.w3css-scheme-w3-theme-00017 .w3css-main-nav,
-.w3css-scheme-w3-theme-00017 .w3css-main-nav__close {
-  /* Beats w3-theme-00017.css:53-57, an !important rule of the same specificity. */
-  color: var(--amun-nav-text) !important;
-}
-
-/* Footer menu plain text, was #565e61 on #08131b (2.83:1). */
-.w3css-scheme-w3-theme-00017 .w3css-menu__list--menu-footer {
-  color: var(--amun-footer-text);
-}
-
-/* Input focus border, was #a3c8e5 (1.76:1). */
-.w3css-scheme-w3-theme-00017 input:focus,
-.w3css-scheme-w3-theme-00017 select:focus,
-.w3css-scheme-w3-theme-00017 textarea:focus {
-  border-color: var(--amun-focus-border);
-}
-
-/* Users who ask for less motion get none: the scheme sets a 0.4s transition on every link and button. */
-@media (prefers-reduced-motion: reduce) {
-  a,
-  .w3-button {
-    /* Beats w3-css-theme-shared-custom.css:13, an !important rule of the same specificity. */
-    transition: none !important;
+  /* Input focus border, was #a3c8e5 (1.76:1). */
+  .w3css-scheme-w3-theme-00017 input:focus,
+  .w3css-scheme-w3-theme-00017 select:focus,
+  .w3css-scheme-w3-theme-00017 textarea:focus {
+    border-color: var(--amun-focus-border);
   }
 }
