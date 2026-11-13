@@ -2,6 +2,7 @@
 
 ## Next release
 
+- Accessibility: the search slide wrapper no longer adds a second search landmark around the search form.
 - JavaScript: the search behavior is renamed `amunSearchSlide`; the 2.x name `amunThemeBehavior` keeps working as a deprecated alias, so a sub-theme that replaces or reads it is unaffected.
 - Navigation: from 62rem the main menu fits its own box. Link padding is tighter between 62rem and 75rem, and the menu wraps onto a second row instead of running under the account menu or past the page edge.
 - Accessibility: the heading color is darkened (#c1491a) so headings reach 4.5:1 on the light grey ground too.
