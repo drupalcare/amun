@@ -33,9 +33,7 @@
 
 @layer w3css.subtheme {
   :root {
-
     --amun-nav-icon-size: 50px;
-
   }
 }
 
@@ -91,7 +89,6 @@
      scheme is active. D8W3CSS names the active scheme in a body class; with any
      other scheme, that scheme's own colors are left untouched. */
   .w3css-scheme-w3-theme-00017 {
-
     /* Scheme tokens (W3CSS Theme css/predefined/w3css-midnight-ember.css, read by
        css/predefined/w3css-scheme-custom-paint.css) that amun re-points: headings
        everywhere, headings inside the content regions, and the footer menu form
@@ -157,7 +154,6 @@
       flex-wrap: wrap;
     }
   }
-
 
   .w3css-main-nav__inner--horizontal .w3css-main-nav__open,
   .w3css-main-nav__inner--horizontal .open-search {
@@ -278,26 +274,26 @@
     block-size: 3rem;
     margin: 0;
     padding: 0 1rem;
-    border: 1px solid color-mix(in srgb, currentcolor 35%, transparent);
+    border: 1px solid color-mix(in sRGB, currentColor 35%, transparent);
     border-radius: 0.25rem;
     font-size: 1rem;
   }
 
   .search-slide-wrapper .w3-search-block-form .form-actions {
     border-radius: 0.25rem;
-    background-color: currentcolor;
+    background-color: currentColor;
   }
 
   .search-slide-wrapper .w3-search-block-form .form-actions :is(input, button) {
     box-sizing: border-box;
-    block-size: 3rem;
     margin: 0;
     padding: 0 1.25rem;
+    color: var(--amun-search-button-text);
     border: 0;
     border-radius: 0.25rem;
-    color: var(--amun-search-button-text);
     background-color: transparent;
     font-weight: 600;
+    block-size: 3rem;
   }
 
   .search-slide-wrapper .close-search {
@@ -450,11 +446,11 @@
   .w3css-page__main :is(.webform-submission-form, .user-login-form, .user-pass, .user-register-form) .form-actions .form-submit {
     box-sizing: border-box;
     padding: 0.75rem 1.25rem;
+    cursor: pointer;
     border-width: 2px;
     font-size: 0.9375rem;
     font-weight: 600;
     line-height: 1.2;
-    cursor: pointer;
   }
 
   /* The field focus border is a 1px color change, so the ring (outline) carries
