@@ -155,6 +155,7 @@
     }
   }
 
+  /* stylelint-disable-next-line order/order -- this nested rule stays after the @media block; moving it changes which rule wins */
   .w3css-main-nav__inner--horizontal .w3css-main-nav__open,
   .w3css-main-nav__inner--horizontal .open-search {
     display: flex;
@@ -200,6 +201,7 @@
     }
   }
 
+  /* stylelint-disable-next-line order/order -- this nested rule stays after the @media block; moving it changes which rule wins */
   .search-slide-wrapper .search-slide-inner {
     display: flex;
     align-items: center;
@@ -387,6 +389,7 @@
   /* Polish: the focus ring of the top bar stays inside the bar. With the default
      2px outward offset the ring was clipped by the bar's edge on the first and
      last item and on the 50px openers. */
+  /* stylelint-disable-next-line order/order -- this nested rule stays after the @media block; moving it changes which rule wins */
   .w3css-main-nav__inner--horizontal :is(a, button, .w3css-main-nav__open, .open-search):focus-visible {
     outline-offset: -4px;
   }
