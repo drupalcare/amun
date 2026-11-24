@@ -2,6 +2,9 @@
 
 ## Next release
 
+- Header buttons: the menu and search icons keep the header's colour on hover (W3.CSS turned them black, which hid them on a dark header); the hover shows as a light tint.
+- Search panel: the close button is now 44px high, the same height as the search field and the Search button (the base theme fixes those at 44px).
+- Composer: the package name is `drupal/amun-amun` again, the name Drupal.org publishes; the rename to `drupal/amun` is reverted, so `composer require drupal/amun-amun` keeps working.
 - Accessibility: the search slide wrapper no longer adds a second search landmark around the search form.
 - JavaScript: the search behavior is renamed `amunSearchSlide`; the 2.x name `amunThemeBehavior` keeps working as a deprecated alias, so a sub-theme that replaces or reads it is unaffected.
 - Navigation: from 62rem the main menu fits its own box. Link padding is tighter between 62rem and 75rem, and the menu wraps onto a second row instead of running under the account menu or past the page edge.

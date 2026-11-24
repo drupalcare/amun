@@ -20,7 +20,7 @@ at the top of the page, and the site header below it.
 
 1. Install W3CSS Theme 3.0 (for example `composer require drupal/d8w3css`).
 1. Install Amun into `themes/contrib`, for example
-   `composer require drupal/amun`.
+   `composer require drupal/amun-amun`.
 1. Go to Appearance (`/admin/appearance`) and scroll to "Amun".
 1. Click "Install and set as default".
 

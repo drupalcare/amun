@@ -263,6 +263,14 @@
     outline-offset: 2px;
   }
 
+  /* W3.CSS .w3-button:hover turns the text black, and the icons draw in the
+     text colour, so on a dark header they vanish. Keep the header's colour
+     and show the hover as a light tint instead. */
+  .w3css-header__inner > :is(.w3css-main-nav__open, .open-search):hover {
+    color: inherit;
+    background-color: color-mix(in sRGB, currentColor 14%, transparent);
+  }
+
   /* Polish: the form is one centred row (input, search button, close) no wider
      than a reading line, a tall input with a visible border, and a filled
      search button in the panel's own text colour. */
@@ -273,7 +281,7 @@
 
   .search-slide-wrapper .w3-search-block-form input[type="search"] {
     box-sizing: border-box;
-    block-size: 3rem;
+    block-size: 44px;
     margin: 0;
     padding: 0 1rem;
     border: 1px solid color-mix(in sRGB, currentColor 35%, transparent);
@@ -295,12 +303,14 @@
     border-radius: 0.25rem;
     background-color: transparent;
     font-weight: 600;
-    block-size: 3rem;
+    block-size: 44px;
   }
 
+  /* 44px: the base theme fixes the search input and button at 44px (unlayered), so
+     the close button uses the same height to line up with them. */
   .search-slide-wrapper .close-search {
-    inline-size: 3rem;
-    block-size: 3rem;
+    inline-size: 44px;
+    block-size: 44px;
     padding: 0;
   }
   /* search-slide:end */
